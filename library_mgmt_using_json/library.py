@@ -1,6 +1,6 @@
-from lib_pkg import Book,User,catalog,User_cat
+from lib_package import User,catalog,User_cat
 
-cat = Catalog()
+cat = catalog()
 users = User_cat()
     
 def main():
@@ -31,7 +31,7 @@ def main():
             title = input("Enter book title : ")
             auth = input("Enter Author : ")
             isbn = input("Enter ISBN code : ")
-            cat.add_book(Book(title, auth, isbn))
+            cat.add_book(title, auth, isbn)
 
         elif choice == "4":
             isbn = input("Enter ISBN of user to remove : ")

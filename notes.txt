@@ -1,6 +1,0 @@
-Sentence A.
-Sentence B.
-Sentence C.
-Sentence D.
-Sentence E.
-Sentence F.
