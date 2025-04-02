@@ -1,9 +1,9 @@
 import requests
 
-URL = "https://my-json-server.typicode.com/Gokularajan-R/Intern-tasks/content"
+URL = "https://my-json-server.typicode.com/gulugulu2042/Intern-tasks/content"
 
 response = requests.get(URL)
-print(response.json())
+print(response.text)
 
 response = requests.get(f"{URL}/31")
 print(response.json())
