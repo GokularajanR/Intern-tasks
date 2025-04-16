@@ -1,21 +1,11 @@
-# api.py
 import uvicorn
 from fastapi import FastAPI, HTTPException, Path, Query, status
 from pydantic import BaseModel
 
-from lib_package import User, User_cat, catalog
+from lib_package import catalog
+from user_api import router
 
 #validation classes
-class User_Input(BaseModel):
-    name: str 
-    uid: str 
-    ph_no: str
-
-class User_Output(BaseModel):
-    name: str
-    uid: str
-    ph_no: str
-
 class Book_schema(BaseModel): 
     title: str 
     author: str 
@@ -26,47 +16,8 @@ class msgr(BaseModel):
 
 app = FastAPI()
 cat = catalog()
-users = User_cat()
+app.include_router(router)
 
-#endpoints
-@app.post("/users")
-async def add_user_api(user_data: User_Input):
-    if users.get_user_by_uid(user_data.uid):
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail=f"User with UID '{user_data.uid}' already exists in this session."
-        )
-
-    new_user = User(name=user_data.name, uid=user_data.uid, ph_no=user_data.ph_no)
-    users.add_user(new_user)
-    return User_Output(**user_data.dict())
-
-@app.delete("/users/{uid}")
-async def remove_user_api(uid: str = Path(...)):
-    success = users.remove_user(uid)
-    if success:
-        return {"message": "user removed."}
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="user not found."
-        )
-
-@app.get("/users")
-async def get_users_api():
-    return users.get_all_users_as_dicts()
-
-
-@app.get("/users/{uid}")
-async def get_user_api(uid: str = Path(...)):
-    user = users.get_user_by_uid(uid)
-    if user:
-        return user.to_dict()
-    else:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="user not found"
-        )
 
 @app.post("/books")
 async def add_book_api(book_data: Book_schema):

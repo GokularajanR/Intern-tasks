@@ -1,7 +1,22 @@
 [
     {
-        "title": "meow",
-        "author": "gulu",
+        "title": "Beach Read",
+        "author": "Emily Henry",
+        "isbn": "12345"
+    },
+    {
+        "title": "The Unhoneymooners",
+        "author": "Christina Lauren",
         "isbn": "45678"
+    },
+    {
+        "title": "The Flatshare",
+        "author": "Beth O'Leary",
+        "isbn": "98765"
+    },
+    {
+        "title": "One of us is lying",
+        "author": "Karen m",
+        "isbn": "33445"
     }
 ]

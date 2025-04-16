@@ -5,7 +5,6 @@ import json
 API_BASE_URL = "http://127.0.0.1:8000"
 
 def print_response(response):
-    print("-" * 20)
     try:
         if 200 <= response.status_code < 300:
             print(f"API Call Successful (Status: {response.status_code})")
@@ -16,22 +15,16 @@ def print_response(response):
                 else:
                     print(data)
             except json.JSONDecodeError:
-                 print(f"Response Content: {response.text}")
+                 print(f"response content: {response.text}")
         else:
-            print(f"API Error (Status: {response.status_code})")
-            try:
-                error_details = response.json()
-                print(f"  Error Detail: {error_details.get('detail', 'No detail provided')}")
-            except json.JSONDecodeError:
-                print(f"  Error Content: {response.text}")
-    except requests.exceptions.RequestException as e:
-        print(f"Network Error connecting to API: {e}")
-    print("-" * 20)
+            print(f"API Error-Status: {response.status_code})")
+    except Exception as e:
+        print(f"connection to api error: {e}")
 
 
 def main():
     while True:
-        print("\n\nLibrary Management System Menu (via API v1.1):")
+        print("\n\nLMS Menu:")
         print("1. Add User")
         print("2. Remove User")
         print("3. Add Book")

@@ -1,68 +1,121 @@
 import json
 import os
 
-class User:
-    def __init__(self, name:str, uid:str, ph_no:str):
-        self.name = name
-        self.ph_no = ph_no
-        self.uid = uid
+class User_catalog:
+    def __init__(self, data_link="users.json"):
+        self.data_link = data_link
+        if not os.path.exists(self.data_link):
+             self.dump_json([])
+             print(f"Initialized empty user file: {self.data_link}")
+        else:
+            data = self.load_json()
+            if data is False or not isinstance(data, list):
+                print(f"Data format corrupt. Clearing json file")
+                self.dump_json([])
 
-    def __repr__(self) -> str:
-        return f"User name : {self.name}\nuid : {self.uid}\nphone no. : {self.ph_no}\n"
-
-    def __str__(self) -> str:
-        return f"User name : {self.name}\nuid : {self.uid}\nphone no. : {self.ph_no}\n"
-
-    def to_dict(self):
-         return {"name": self.name, "uid": self.uid, "ph_no": self.ph_no}
-
-class User_cat:
-    def __init__(self):
-        self.user_list = []
-
-    def add_user(self, user:User) -> bool:
-        if not isinstance(user,User):
-            return False
-        for existing_user in self.user_list:
-            if existing_user.uid == user.uid:
-                print(f"user alr exists")
-                return False
+    def load_json(self):
+        if not os.path.exists(self.data_link):
+            print("file not found")
+            return [] 
         try:
-            self.user_list.append(user)
-            return True
-        except Exception as e: 
-            print(f"erorr adding user: {e}")
+            with open(self.data_link, 'r') as fileobj:
+                content = fileobj.read()
+                if not content:
+                    return []
+                data = json.loads(content)
+                if not isinstance(data, list):
+                     print("Data corrupt")
+                     return False
+            return data
+        except Exception as e:
+            print(f"internal error : {e}")
             return False
 
-    def remove_user(self, uid:str) -> bool:
-        original_length = len(self.user_list)
-        self.user_list = [user for user in self.user_list if user.uid != uid]
-        user_was_removed = len(self.user_list) < original_length
-        if not user_was_removed and not self.isempty():
-             print(f"user not found")
-        elif self.isempty() and original_length == 0:
-             print("no users")
+    def dump_json(self, data):
+        try:
+            with open(self.data_link, 'w') as obj:
+                json.dump(data, obj, indent=4)
+            return True
+        except Exception as e:
+             print(f"error writing to user file : {e}")
+             return False
 
-        return user_was_removed
+    def add_user(self, name: str, uid: str, ph_no: str) -> bool:
+        users = self.load_json()
+        if users is False: # Check for load failure
+             print("Failed to load user data, cannot add user.")
+             return False
 
-    def get_user_by_uid(self, uid:str) -> User | None:
-         for user in self.user_list:
-             if user.uid == uid:
-                 return user
-         return None
+        for existing_user in users:
+            if existing_user.get("uid") == uid:
+                print(f"User with UID '{uid}' already exists.")
+                return False
+
+        new_user_dict = {"name": name, "uid": uid, "ph_no": ph_no}
+
+        users.append(new_user_dict)
+        if self.dump_json(users):
+            print(f"User '{name}' ({uid}) added successfully.")
+            return True
+        else:
+            print(f"Failed to save user data after adding user '{name}'.")
+            return False
+
+    def remove_user(self, uid: str) -> bool:
+        users = self.load_json()
+        if users is False:
+            print("Failed to load user data, cannot remove user.")
+            return False
+        if not users: 
+             print("User catalog is empty. Cannot remove user.")
+             return False
+
+        original_length = len(users)
+        new_users_list = [user for user in users if user.get("uid") != uid]
+
+        if len(new_users_list) == original_length:
+            print(f"user not found")
+            return False
+        else:
+            if self.dump_json(new_users_list):
+                print(f"Success")
+                return True
+            else:
+                print(f"file save failed")
+                return False
+
+    def get_user_by_uid(self, uid: str) -> dict | None:
+        users = self.load_json()
+        if users is False:
+             print("user load failed")
+             return None
+        
+        for user in users:
+             if user.get("uid") == uid:
+                 return user 
+        print("User not found.")
+        return None
 
     def isempty(self) -> bool:
-        return len(self.user_list) == 0
+        users = self.load_json()
+        return users is False or len(users) == 0
 
-    def get_all_users_as_dicts(self) -> list:
-         return [user.to_dict() for user in self.user_list]
+    def get_all_users(self) -> list:
+        users = self.load_json()
+        if users is False:
+            print("user load failed")
+            return []
+        return users 
 
     def __str__(self) -> str:
-        if self.isempty():
-            return "No users added"
-        ret = "Registered Users\n"
-        for i in self.user_list:
-            ret += str(i) + "\n"
+        users = self.load_json()
+
+        ret = ""
+        for user in users:
+            name = user.get('name', 'N/A')
+            uid = user.get('uid', 'N/A')
+            ph_no = user.get('ph_no', 'N/A')
+            ret += f"User name : {name}\nuid : {uid}\nphone no. : {ph_no}\n\n"
         return ret
 
 class catalog:
@@ -80,7 +133,7 @@ class catalog:
 
     def add_book(self, title:str, author:str, isbn:str) -> bool:
         books = self.load_json()
-        if books is False: 
+        if books is False:
              print("Failed to load books, cannot add.")
              return False
 
@@ -117,7 +170,7 @@ class catalog:
         books = self.load_json()
         if books is False or self.isempty(books):
              print("Cannot search cstalog is empty or failed to load.")
-             return [] 
+             return []
 
         new_list = []
         search_key_lower = search_key.lower()
@@ -127,7 +180,7 @@ class catalog:
                 author_prefix = book.get("author", "")[:len(search_key)].lower()
 
                 if title_prefix == search_key_lower or author_prefix == search_key_lower:
-                    new_list.append(book) 
+                    new_list.append(book)
             return new_list
         except Exception as e:
              print(f"Internal error during search: {e}")
@@ -140,14 +193,14 @@ class catalog:
     def load_json(self):
         if not os.path.exists(self.data_link):
             print(f"Error: Data file '{self.data_link}' not found.")
-            return False 
+            return False
         try:
             with open(self.data_link,'r') as obj:
                 content = obj.read()
                 if not content:
-                    return [] 
+                    return []
                 data = json.loads(content)
-                if not isinstance(data, list): 
+                if not isinstance(data, list):
                      print(f"Error: Data in '{self.data_link}' is not a JSON list.")
                      return False
             return data
@@ -156,7 +209,7 @@ class catalog:
              return False
         except Exception as e:
             print(f"Error in loading file '{self.data_link}': {e}")
-            return False 
+            return False
 
     def dump_json(self, data):
         try:
