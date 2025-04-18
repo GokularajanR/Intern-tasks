@@ -13,7 +13,7 @@ class User_catalog:
                 print(f"Data format corrupt. Clearing json file")
                 self.dump_json([])
 
-    def load_json(self):
+    def load_json(self) -> bool :
         if not os.path.exists(self.data_link):
             print("file not found")
             return [] 
@@ -31,7 +31,7 @@ class User_catalog:
             print(f"internal error : {e}")
             return False
 
-    def dump_json(self, data):
+    def dump_json(self, data) -> bool:
         try:
             with open(self.data_link, 'w') as obj:
                 json.dump(data, obj, indent=4)
