@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+
 from controllers.API_controller import app
 
 main_api = FastAPI()
