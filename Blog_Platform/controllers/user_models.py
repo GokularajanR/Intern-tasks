@@ -2,13 +2,15 @@ from database.sqlite_connector import create_session, User
 import jwt
 from datetime import datetime, timedelta, timezone
 from jwt.exceptions import JWTDecodeError
+from passlib.hash import pbkdf2_sha256 as sha
 
-from config import SECRET_KEY
+
+from config import SECRET_KEY_SIGNATURES
 
 obj = jwt.JWT()
 key = jwt.jwk_from_dict({
     "kty": "oct",
-    "k": SECRET_KEY,
+    "k": SECRET_KEY_SIGNATURES,
     "alg": "HS256",
     "use": "sig",
    })
@@ -34,7 +36,7 @@ def verify_jwt_token(token: str) -> dict:
 async def create_user(username: str, password: str, role: str):
     try:
         session = create_session()
-        user = User(username=username, hashed_password=password, role=role)
+        user = User(username=username, hashed_password=sha.hash(password), role=role)
         session.add(user)
         session.commit()
         return user.id
@@ -48,7 +50,7 @@ async def create_user(username: str, password: str, role: str):
 async def login_user(username: str, password: str):
     try:
         session = create_session()
-        user = session.query(User).filter_by(username=username, hashed_password=password).first()
+        user = session.query(User).filter_by(username=username, hashed_password=sha.hash(password)).first()
         if not user:
             raise ValueError("Invalid username or password.")
         jwt = generate_jwt_token(user.id, user.username, user.role)

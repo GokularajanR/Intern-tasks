@@ -1,1 +1,1 @@
-SECRET_KEY = "ching_chong"
+SECRET_KEY_SIGNATURES = "ching_chong"
