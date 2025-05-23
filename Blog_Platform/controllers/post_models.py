@@ -1,4 +1,4 @@
-from database.sqlite_connector import create_session, Post, User
+from database.postgres_connector import create_session, Post, User
 
 async def create_post(title: str, content: str, username: str):
     session = create_session()

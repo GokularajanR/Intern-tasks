@@ -1,4 +1,4 @@
-from database.sqlite_connector import create_session, User
+from database.postgres_connector import create_session, User
 import jwt
 from datetime import datetime, timedelta, timezone
 from jwt.exceptions import JWTDecodeError
@@ -50,8 +50,10 @@ async def create_user(username: str, password: str, role: str):
 async def login_user(username: str, password: str):
     try:
         session = create_session()
-        user = session.query(User).filter_by(username=username, hashed_password=sha.hash(password)).first()
+        user = session.query(User).filter_by(username=username).first()
         if not user:
+            raise ValueError("Invalid username or password.")
+        if not sha.verify(password, user.hashed_password):
             raise ValueError("Invalid username or password.")
         jwt = generate_jwt_token(user.id, user.username, user.role)
         return jwt
