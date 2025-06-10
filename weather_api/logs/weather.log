@@ -1,0 +1,52 @@
+2025-06-10 12:00:57,937 - app - INFO - Received request for weather in chennai
+2025-06-10 12:00:57,937 - app - INFO - Received request for weather in chennai
+2025-06-10 12:00:58,327 - app - INFO - Weather data for chennai retrieved successfully
+2025-06-10 12:00:58,327 - app - INFO - Weather data for chennai retrieved successfully
+2025-06-10 12:01:15,131 - app - INFO - Received request for weather in faguette
+2025-06-10 12:01:15,131 - app - INFO - Received request for weather in faguette
+2025-06-10 12:02:03,084 - app - INFO - Received request for weather in faguette
+2025-06-10 12:02:03,084 - app - INFO - Received request for weather in faguette
+2025-06-10 12:02:03,424 - app - WARNING - City faguette not found
+2025-06-10 12:02:03,424 - app - WARNING - City faguette not found
+2025-06-10 12:02:22,257 - app - INFO - Received request for weather in russia
+2025-06-10 12:02:22,257 - app - INFO - Received request for weather in russia
+2025-06-10 12:02:22,575 - app - INFO - Weather data for russia retrieved successfully
+2025-06-10 12:02:22,575 - app - INFO - Weather data for russia retrieved successfully
+2025-06-10 12:02:30,570 - app - INFO - Received request for weather in tampines
+2025-06-10 12:02:30,570 - app - INFO - Received request for weather in tampines
+2025-06-10 12:02:30,882 - app - INFO - Weather data for tampines retrieved successfully
+2025-06-10 12:02:30,882 - app - INFO - Weather data for tampines retrieved successfully
+2025-06-10 12:02:39,340 - app - INFO - Received request for weather in bedok
+2025-06-10 12:02:39,340 - app - INFO - Received request for weather in bedok
+2025-06-10 12:02:39,656 - app - INFO - Weather data for bedok retrieved successfully
+2025-06-10 12:02:39,656 - app - INFO - Weather data for bedok retrieved successfully
+2025-06-10 12:02:45,588 - app - INFO - Received request for weather in velachery
+2025-06-10 12:02:45,588 - app - INFO - Received request for weather in velachery
+2025-06-10 12:02:45,992 - app - WARNING - City velachery not found
+2025-06-10 12:02:45,992 - app - WARNING - City velachery not found
+2025-06-10 12:02:55,438 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:02:55,438 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:02:55,755 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:02:55,755 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:11,795 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:11,795 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:11,974 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:11,974 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:12,188 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:12,188 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:12,443 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:12,443 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:12,614 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:12,614 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:12,758 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:12,758 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:13,037 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:13,037 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:13,171 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:13,171 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:13,469 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:13,469 - app - INFO - Received request for weather in bangalore
+2025-06-10 12:03:13,635 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:13,635 - app - INFO - Weather data for bangalore retrieved successfully
+2025-06-10 12:03:13,859 - app - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-06-10 12:03:13,859 - app - WARNING - Rate limit exceeded for IP: 127.0.0.1
