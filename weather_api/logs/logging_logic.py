@@ -14,15 +14,15 @@ def setup_logger(name):
         maxBytes=1024*1024,
         backupCount=5
     )
-    console_handler = logging.StreamHandler()
+    #console_handler = logging.StreamHandler()
 
     log_format = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
     file_handler.setFormatter(log_format)
-    console_handler.setFormatter(log_format)
+    #console_handler.setFormatter(log_format)
 
     logger.addHandler(file_handler)
-    logger.addHandler(console_handler)
+    #logger.addHandler(console_handler)
 
     return logger
