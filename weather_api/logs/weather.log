@@ -50,3 +50,23 @@
 2025-06-10 12:03:13,635 - app - INFO - Weather data for bangalore retrieved successfully
 2025-06-10 12:03:13,859 - app - WARNING - Rate limit exceeded for IP: 127.0.0.1
 2025-06-10 12:03:13,859 - app - WARNING - Rate limit exceeded for IP: 127.0.0.1
+2025-06-12 20:30:42,184 - app - INFO - Received request for weather in chennai
+2025-06-12 20:30:42,184 - app - INFO - Received request for weather in chennai
+2025-06-12 20:30:42,568 - app - INFO - Weather data for chennai retrieved successfully
+2025-06-12 20:30:42,568 - app - INFO - Weather data for chennai retrieved successfully
+2025-06-12 20:31:05,332 - app - INFO - Received request for weather in chennai
+2025-06-12 20:31:05,332 - app - INFO - Received request for weather in chennai
+2025-06-12 20:31:05,484 - app - INFO - Weather data for chennai retrieved successfully
+2025-06-12 20:31:05,484 - app - INFO - Weather data for chennai retrieved successfully
+2025-06-12 20:31:11,677 - app - INFO - Received request for weather in bedok
+2025-06-12 20:31:11,677 - app - INFO - Received request for weather in bedok
+2025-06-12 20:31:12,015 - app - INFO - Weather data for bedok retrieved successfully
+2025-06-12 20:31:12,015 - app - INFO - Weather data for bedok retrieved successfully
+2025-06-12 20:33:41,283 - app - INFO - Received request for weather in bedok
+2025-06-12 20:33:41,283 - app - INFO - Received request for weather in bedok
+2025-06-12 20:33:41,463 - app - INFO - Weather data for bedok retrieved successfully
+2025-06-12 20:33:41,463 - app - INFO - Weather data for bedok retrieved successfully
+2025-06-12 20:34:00,182 - app - INFO - Received request for weather in gp
+2025-06-12 20:34:00,182 - app - INFO - Received request for weather in gp
+2025-06-12 20:34:00,503 - app - WARNING - City gp not found
+2025-06-12 20:34:00,503 - app - WARNING - City gp not found
