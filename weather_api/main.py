@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException, Request
 import time
 import uvicorn
 
-from logs.logging_logic import setup_logger
+from logs.logging_logic import logger
 
 API_KEY = "12b787a589d34a61b3460947242303"
 BASE_URL = "https://api.weatherapi.com/v1/current.json"
@@ -12,8 +12,6 @@ RATE_LIMIT = 5
 RATE_TIME = 10 
 request_counts = {}
 app = FastAPI()
-
-logger = setup_logger('app')
 
 @app.middleware("http")
 async def rate_limiter(request: Request, call_next):
